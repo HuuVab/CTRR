@@ -1,0 +1,15 @@
+Universal Quantifications:
+1. "All students passed all subjects"
+This statement (∀s: is_passing(s)) is true only if every single student in the dataset has scores of at least 5 in all three subjects. It requires universal success across the entire student population.
+2. "All students have a math score higher than 3"
+This statement (∀s: math_score(s) > 3) is true only if every student in the dataset has a math score exceeding 3. This represents a basic minimum threshold that all students should meet in mathematics.
+Existential Quantifications:
+1. "There exists a student who scored above 9 in math"
+This statement (∃s: is_high_math(s)) is true if at least one student in the dataset has a math score of 9 or higher. This identifies the presence of mathematical excellence within the group.
+2. "There exists a student who improved in CS over Math"
+This statement (∃s: improved_in_cs(s)) is true if at least one student has a CS score exceeding their math score. This checks if subject-specific aptitude variation exists in the dataset.
+Combined/Nested Statements:
+1. "For every student, there exists a subject in which they scored above 6"
+This statement (∀s: ∃c: score(s,c) > 6) combines universal and existential quantifiers. It's true if every student has at least one strong subject (with score > 6). This tests whether all students have at least one area of relative strength.
+2. "For every student scoring below 6 in Math, there exists a subject where they scored above 6"
+This nested statement (∀s: (math_score(s) < 6) → (∃c: score(s,c) > 6)) is true if all struggling math students still have at least one strong subject. This examines whether math-weaknesses correlate with overall academic struggle.

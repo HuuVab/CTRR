@@ -1,0 +1,108 @@
+Step-by-Step Function Execution
+Test Case 1: R|(P&Q)
+Step 1: Converting from Infix to Postfix using Infix2Postfix(Infix)
+Input: R|(P&Q)
+
+Initialize: postfix = "", stack = []
+Process each character:
+
+'R': Add to postfix → postfix = "R"
+'|': Push to stack → stack = ["|"]
+'(': Push to stack → stack = ["|", "("]
+'P': Add to postfix → postfix = "RP"
+'&': Push to stack → stack = ["|", "(", "&"]
+'Q': Add to postfix → postfix = "RPQ"
+')': Pop operators until '(':
+
+Pop '&', add to postfix → postfix = "RPQ&"
+Pop '(' and discard → stack = ["|"]
+
+
+
+
+Pop remaining operators:
+
+Pop '|', add to postfix → postfix = "RPQ&|"
+
+
+
+Output: RPQ&|
+Step 2: Generating Truth Table using Postfix2Truthtable(Postfix)
+Input: RPQ&|
+
+Extract variables: ["P", "Q", "R"] (sorted)
+Generate 8 rows (2^3) of all possible T/F combinations
+For each row, evaluate the expression:
+
+Example with P=F, Q=F, R=F:
+
+'R': Push R's value (F) → stack = [F]
+'P': Push P's value (F) → stack = [F, F]
+'Q': Push Q's value (F) → stack = [F, F, F]
+'&': Pop Q, P values (F, F), compute F & F = F, push result → stack = [F, F]
+'|': Pop P&Q, R values (F, F), compute F | F = F, push result → stack = [F]
+Final result: F
+
+
+
+
+
+Test Case 2: ~P|(Q&R)>R
+Step 1: Converting from Infix to Postfix using Infix2Postfix(Infix)
+Input: ~P|(Q&R)>R
+
+Initialize: postfix = "", stack = []
+Process each character:
+
+'': Push to stack → stack = [""]
+'P': Add to postfix → postfix = "P"
+'|': Pop operators with higher precedence:
+
+Pop '', add to postfix → postfix = "P"
+Push '|' → stack = ["|"]
+
+
+'(': Push to stack → stack = ["|", "("]
+'Q': Add to postfix → postfix = "P~Q"
+'&': Push to stack → stack = ["|", "(", "&"]
+'R': Add to postfix → postfix = "P~QR"
+')': Pop operators until '(':
+
+Pop '&', add to postfix → postfix = "P~QR&"
+Pop '(' and discard → stack = ["|"]
+
+
+'>': Pop operators with higher/equal precedence:
+
+Pop '|', add to postfix → postfix = "P~QR&|"
+Push '>' → stack = [">"]
+
+
+'R': Add to postfix → postfix = "P~QR&|R"
+
+
+Pop remaining operators:
+
+Pop '>', add to postfix → postfix = "P~QR&|R>"
+
+
+
+Output: P~QR&|R>
+Step 2: Generating Truth Table using Postfix2Truthtable(Postfix)
+Input: P~QR&|R>
+
+Extract variables: ["P", "Q", "R"] (sorted)
+Generate 8 rows (2^3) of all possible T/F combinations
+For each row, evaluate the expression:
+
+Example with P=F, Q=F, R=F:
+
+'P': Push P's value (F) → stack = [F]
+'~': Pop P (F), compute ~F = T, push result → stack = [T]
+'Q': Push Q's value (F) → stack = [T, F]
+'R': Push R's value (F) → stack = [T, F, F]
+'&': Pop R, Q values (F, F), compute F & F = F, push result → stack = [T, F]
+'|': Pop Q&R, ~P values (F, T), compute T | F = T, push result → stack = [T]
+'R': Push R's value (F) → stack = [T, F]
+'>': Pop R, T values (F, T), compute T > F = F, push result → stack = [F]
+Final result: F

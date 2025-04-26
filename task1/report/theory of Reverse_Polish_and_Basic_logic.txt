@@ -1,0 +1,20 @@
+Theory of Reverse Polish Notation (RPN) and Basic Logic
+Reverse Polish Notation (RPN)
+Reverse Polish Notation, also known as postfix notation, is a mathematical notation in which operators follow their operands. Unlike infix notation (which we commonly use), RPN eliminates the need for parentheses by placing operators after the operands they act upon.
+Key characteristics of RPN:
+
+Operators appear after their operands rather than between them
+No parentheses are needed to indicate order of operations
+Evaluation is straightforward using a stack-based algorithm
+
+Examples comparing infix and postfix notation:
+
+Infix: A + B → Postfix: AB+
+Infix: (A + B) * C → Postfix: AB+C*
+Infix: A + (B * C) → Postfix: ABC*+
+
+Benefits in logical expression evaluation:
+
+Eliminates ambiguity in operator precedence
+Simplifies parsing and evaluation
+Allows for efficient stack-based evaluation

@@ -1,0 +1,4 @@
+If "All students passed all subjects" is true, your dataset represents a high-performing group with no failing grades.
+If "There exists a student who scored above 9 in math" is true, your dataset includes at least some mathematically gifted students.
+The evaluation of "For every student scoring below 6 in Math, there exists a subject where they scored above 6" will reveal whether math struggles predict overall academic difficulties or if students tend to have compensating strengths.
+If most negations are false, your dataset likely shows consistent patterns; if many are true, there is significant variation among students.

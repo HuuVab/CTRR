@@ -1,0 +1,25 @@
+Our hybrid encryption demonstration reveals significant performance differences:
+Method | MessageSize | EncryptionTime | DecryptionTime 
+PureRSA | 190bytes(max) | 0.000026s | 0.000488s
+Hybrid | 1420bytes | 0.000463s(total) | 0.001027s (total)
+
+The hybrid approach:
+
+Encrypted 7.5 times more data with only a modest increase in total processing time
+Maintained security while overcoming RSA's size limitation
+Demonstrated why virtually all practical implementations use this approach
+
+The results confirm that RSA is optimally used for key exchange rather than bulk data encryption.
+Practical Implications
+These limitations shape cryptographic system design in several ways:
+
+Protocol Design: TLS, SSH, and other secure protocols use RSA primarily for authentication and key exchange, not bulk encryption.
+Resource Allocation: Systems must allocate significantly more computational resources for RSA operations compared to symmetric encryption.
+Application Architecture: Applications must be designed to handle RSA's constraints:
+
+Web servers using HTTPS must optimize RSA operations for scale
+Cryptographic libraries must implement mitigations against timing attacks
+Systems must carefully manage the lifecycle of keys
+
+
+Emerging Alternatives: The limitations have accelerated adoption of alternatives like Elliptic Curve Cryptography, which provides equivalent security with smaller keys and better performance.

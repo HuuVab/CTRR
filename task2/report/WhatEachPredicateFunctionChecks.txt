@@ -1,0 +1,8 @@
+1. is_passing(student)
+This predicate checks if a student has passed all subjects, meaning all three scores (Math, CS, and English) are greater than or equal to 5. This identifies students who have successfully met the minimum requirements in all subjects.
+2. is_high_math(student)
+This predicate identifies students who excel in mathematics, specifically those with math scores greater than or equal to 9. This represents exceptional performance in mathematics, close to or at the maximum possible score.
+3. is_struggling(student)
+This predicate identifies students who are having difficulty with technical subjects, where both their math and CS scores are below 6. This can help identify students who may need additional support in core technical areas.
+4. improved_in_cs(student)
+This predicate checks if a student's CS score is higher than their math score, which might indicate either better aptitude or improvement in computer science compared to mathematics.

@@ -1,0 +1,12 @@
+1. "Not all students passed all subjects"
+Negation transforms ∀s: is_passing(s) into ∃s: ¬is_passing(s), meaning "There exists at least one student who failed at least one subject." This shifts from requiring universal success to identifying the existence of any failure.
+2. "Not all students have a math score higher than 3"
+Negation transforms ∀s: math_score(s) > 3 into ∃s: math_score(s) ≤ 3, meaning "There exists at least one student whose math score is 3 or below." This identifies the presence of very low math performers.
+3. "There does not exist a student who scored above 9 in math"
+Negation transforms ∃s: is_high_math(s) into ∀s: ¬is_high_math(s), meaning "All students scored 9 or below in math." This changes from seeking excellence to confirming its absence.
+4. "There does not exist a student who improved in CS over Math"
+Negation transforms ∃s: improved_in_cs(s) into ∀s: ¬improved_in_cs(s), meaning "For all students, CS scores are equal to or lower than math scores." This describes a consistent pattern where math performance equals or exceeds CS performance.
+5. "It is not the case that for every student, there exists a subject in which they scored above 6"
+Negation transforms ∀s: ∃c: score(s,c) > 6 into ∃s: ∀c: score(s,c) ≤ 6, meaning "There exists at least one student who scored 6 or below in all subjects." This identifies the presence of generally struggling students.
+6. "It is not the case that for every student scoring below 6 in Math, there exists a subject where they scored above 6"
+This complex negation transforms ∀s: (math_score(s) < 6) → (∃c: score(s,c) > 6) into ∃s: (math_score(s) < 6) ∧ (∀c: score(s,c) ≤ 6), meaning "There exists at least one math-struggling student who also struggles in all other subjects." This identifies the presence of comprehensively struggling students.

@@ -1,0 +1,59 @@
+Size Limitation Analysis
+Our experimental results clearly demonstrated RSA's fundamental size limitation. With our 2048-bit key, encryption succeeded consistently up to 190 bytes but failed at 200 bytes. This limitation is not an implementation error but stems from RSA's mathematical foundations.
+The maximum message size for RSA encryption is calculated as:
+
+Max message size = (Key size in bits ÷ 8) - Padding overhead
+For 2048-bit keys with OAEP padding using SHA-256, this results in approximately 190 bytes
+
+This size constraint exists because:
+
+The message (converted to an integer) must be smaller than the RSA modulus n
+OAEP padding adds overhead (42+ bytes for SHA-256) to ensure security
+The padding is essential for preventing mathematical attacks
+
+The practical implications are significant:
+
+Direct RSA encryption is unsuitable for documents, images, or any data exceeding this limit
+Applications must either segment data or use hybrid approaches
+Increasing key size only marginally increases maximum message size while significantly increasing computational cost
+
+Performance Analysis
+Our performance measurements revealed several important characteristics:
+
+Asymmetric Operation Times: Decryption (average 0.000476s) consistently required more time than encryption (average 0.000037s) - approximately 12.9 times slower.
+Computational Complexity: This asymmetry occurs because:
+
+Encryption uses the public exponent (typically 65537)
+Decryption uses the private exponent (a much larger number)
+The modular exponentiation operation scales with exponent size
+
+
+Scalability Issues: While our test times appear small, they become significant when:
+
+Processing numerous messages (e.g., secure communications)
+Operating on constrained devices (IoT, mobile)
+Requiring high throughput (web servers)
+
+
+Key Generation Overhead: Our tests showed key generation taking 0.0200-0.0609 seconds - orders of magnitude slower than individual encrypt/decrypt operations. In environments requiring frequent key rotation, this becomes a bottleneck.
+
+Security Considerations
+Despite its widespread use, RSA faces several security challenges:
+
+Quantum Vulnerability: RSA's security relies on the difficulty of factoring large numbers. Quantum computers running Shor's algorithm could theoretically break RSA encryption by efficiently finding these factors.
+Key Length Requirements: To maintain security against classical attacks:
+
+2048 bits is the current minimum recommendation
+3072 bits is recommended for sensitive information
+4096 bits for long-term security (10+ years)
+Each increase doubles computational requirements.
+
+
+Implementation Vulnerabilities: RSA is susceptible to:
+
+Side-channel attacks if not carefully implemented
+Timing attacks if operations aren't constant-time
+Chosen-ciphertext attacks if proper padding is not used
+
+
+Key Management Challenges: Secure distribution and storage of keys remains one of RSA's most significant practical challenges, requiring sophisticated infrastructure.
